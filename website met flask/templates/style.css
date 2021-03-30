@@ -1,0 +1,188 @@
+*{
+	margin: 0;
+	box-sizing: border-box;
+}
+
+::-webkit-scrollbar{
+  width: 0;
+  }
+#scrollpath{
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 10px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.05);
+}
+#progressbar{
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 10px;
+  height: 100%;
+  background: linear-gradient(to top, #008aff, #00ffe7);
+  animation: animate 5s linear infinite;
+}
+@keyframes animate{
+  0%, 100%{
+    filter: hue-rotate(0deg);
+  }
+  50%{
+    filter: hue-rotate(360deg);
+  }
+}
+#progressbar::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, #008aff, #00ffe7);
+  filter: blur(30px);
+}
+#progressbar::after{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, #008aff, #00ffe7);
+  filter: blur(30px);
+}
+
+
+
+.wrapper_header > div{
+	 background: #f90303;
+	}
+	
+	.wrapper_header {
+	 display:grid;
+	 grid-template-columns: 15% 70% 15%;
+	}
+	
+	.logo_tekst{
+		display: block;
+		margin: auto;
+	}
+	
+	.banner_logo{
+		display: block;
+		margin: auto;
+	}
+	
+	.winkelmandje{
+		display: block;
+		margin: auto;
+	}
+
+
+.wrapper_menu > div{
+	 background: #f90303;
+	 color: #010101;
+	 text-align: center;
+	}
+
+a:-webkit-any-link{
+	color: inherit;
+	text-decoration: none;
+		text-decoration-line: none;
+		text-decoration-style: initial;
+		text-decoration-color: initial;
+}
+
+
+	.home_button{
+		display: inline-block;
+		position: relative;
+		margin-left: 75px;
+	}
+	
+	.products_button{
+		display: inline-block;
+		position: relative;
+		margin-left: 75px;
+	}
+	
+	.about_button{
+		display: inline-block;
+		position: relative;
+		margin-left: 75px;
+	}
+	
+	.contact_button{
+		display: inline-block;
+		position: relative;
+		margin-left: 75px;
+	}
+
+.wrapper_products{
+		max-width: 1080px;
+		margin: auto;
+		padding-left: 25px;
+		padding-right: 25px;
+	}
+	
+	.title{
+		text-align: center;
+		position: relative;
+		line-height: 100px;
+	}
+	
+	.row{
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+	}
+	
+	.product-1{
+		flex-basis: 25%;
+		padding: 10px;
+		min-width: 200px;
+		margin-bottom: 50px
+	}
+	.product-1 img{
+		width: 100%;
+		
+	}
+	
+	.discount{
+		color: gray;
+		text-decoration-color: red;
+		margin-left: 20px;
+	}
+	
+.wrapper_about{
+		max-width: 1080px;
+		margin: auto;
+		padding-left: 25px;
+		padding-right: 25px;
+	}
+	
+	.title{
+		text-align: center;
+		position: relative;
+		line-height: 100px;
+	}
+	
+	.about_me{
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+	}
+	
+.wrapper_contact{
+		max-width: 1080px;
+		margin: auto;
+		padding-left: 25px;
+		padding-right: 25px;
+	}
+	
+.socialmedia{
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+	}
+	

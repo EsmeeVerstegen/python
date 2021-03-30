@@ -20,12 +20,12 @@ def start():
                     print(password)
 
                     # here you can decide if you want to generate another password or if you want to quit the program
-                    restart = input("Would you like to generate another password? type Yes if not type No      ")
+                    restart = input("Would you like to generate another password? type yes if not type no      ")
                     restart = str(restart)
-                    if (restart == "Yes"):
+                    if (restart == "yes"):
                         start()
 
-                    if (restart == "No"):
+                    if (restart == "no"):
                         exit()
 
 start()

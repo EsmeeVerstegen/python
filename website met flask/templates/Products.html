@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<head><title>Products</title>
+<link rel="stylesheet" href="style.css">
+<script defer src="theme.js"></script>
+</head>
+<body>
+	<div id="progressbar"></div>
+	<div id="scrollPath"></div>
+<header style="background-color:red;">
+<a href="index.html"> </a>
+	<div class ="wrapper_header">
+	<div class="div">
+		<img class="banner_logo" src="images/banner_logo.png" alt="logo" title="Esmee Verstegen">
+	</div>
+	<div class="div">
+		<img class="logo_tekst" src="images/esmeeverstegen.png">
+	</div>
+	<div class="div">
+        <a href="Winkelmandje.html"><img class="winkelmandje" src="images/winkelmandje.jpg"></a>
+	</div>	
+	</div>
+</header>
+<nav class ="wrapper_menu">
+	<div class ="wrapper_menu">
+<table cellspacing="8" cellpadding="8">
+<tr>
+	<div class="div">
+        <td><a class="home_button" href="Index.html">Home</a></td>
+	</div>
+	<div class="div">
+		<td><a class="products_button" href="Products.html">Products</a></td>
+	</div>
+	<div class="div">
+		<td><a class="about_button" href="About.html">About</a></td>
+	</div>
+	<div class="div">
+		<td><a class="contact_button" href="Contact.html">Contact</a></td>
+	</div>
+	</div>
+</tr>
+</table>
+</nav>
+
+<div class="wrapper_products">
+	<h2 class="title">Hoodies</h2>
+	<div class="row">
+		<div class="product-1">
+			<img src="images/kleding/hoodie zwart.jpg">
+			<h4>Hoodie Charcoal</h4>
+			<p>&#8364; 24,99 <s class="discount">   &#8364; 29,99</s></p>
+		</div>
+		<div class="product-1">
+			<img src="images/kleding/hoodie rood.jpg">
+			<h4>Hoodie Red</h4>
+			<p>&#8364; 24,99 <s class="discount">   &#8364; 29,99</s></p>
+		</div>
+		<div class="product-1">
+			<img src="images/kleding/hoodie wit.jpg">
+			<h4>Hoodie White</h4>
+			<p>&#8364; 24,99 <s class="discount">   &#8364; 29,99</s></p>
+		</div>
+	</div>
+</div>
+<div class="wrapper_products">
+	<h2 class="title">Tshirts</h2>
+	<div class="row">
+		<div class="product-1">
+			<img src="images/kleding/tshirt zwart.jpg">
+			<h4>Tshirt Black</h4>
+			<p>&#8364; 19,99 <s class="discount">   &#8364; 24,99</s></p>
+		</div>
+		<div class="product-1">
+			<img src="images/kleding/tshirt legergroen.jpg">
+			<h4>Tshirt Army Green</h4>
+			<p>&#8364; 19,99 <s class="discount">   &#8364; 24,99</s></p>
+		</div>
+		<div class="product-1">
+			<img src="images/kleding/tshirt wit.jpg">
+			<h4>Tshirt White</h4>
+			<p>&#8364; 19,99 <s class="discount">   &#8364; 24,99</s></p>
+		</div>
+	</div>
+</div>
+<div class="wrapper_products">
+	<h2 class="title">Sweatpants men</h2>
+	<div class="row">
+		<div class="product-1">
+			<img src="images/kleding/jogging broek man zwart.jpg">
+			<h4>Sweatpants Black</h4>
+			<p>&#8364; 29,99 <s class="discount">   &#8364; 34,99</s></p>
+		</div>
+		<div class="product-1">
+			<img src="images/kleding/jogging broek man beige.jpg">
+			<h4>Sweatpants Beige</h4>
+			<p>&#8364; 29,99 <s class="discount">   &#8364; 34,99</s></p>
+		</div>
+		<div class="product-1">
+			<img src="images/kleding/jogging broek man leger groen.jpg">
+			<h4>Sweatpants Army Green</h4>
+			<p>&#8364; 29,99 <s class="discount">   &#8364; 34,99</s></p>
+		</div>
+	</div>
+</div>
+<div class="wrapper_products">
+	<h2 class="title">Sweatpants women</h2>
+	<div class="row">
+		<div class="product-1">
+			<img src="images/kleding/jogging broek vrouw zwart.jpg">
+			<h4>Sweatpants Black</h4>
+			<p>&#8364; 29,99 <s class="discount">   &#8364; 34,99</s></p>
+		</div>
+		<div class="product-1">
+			<img src="images/kleding/jogging broek vrouw rood.jpg">
+			<h4>Sweatpants Red</h4>
+			<p>&#8364; 29,99 <s class="discount">   &#8364; 34,99</s></p>
+		</div>
+		<div class="product-1">
+			<img src="images/kleding/jogging broek vrouw leger groen.jpg">
+			<h4>Sweatpants Army Green</h4>
+			<p>&#8364; 29,99 <s class="discount">   &#8364; 34,99</s></p>
+		</div>
+	</div>
+</div>
+
+	
+<hr>
+<footer>
+Copyright &copy; Esmee Verstegen 2020-2021
+</footer>
+
+	<script type="text/javascript">
+		let progress = document.getElementById('progressbar');
+		let totalHeight = document.body.scrollHeight - window.innerHeight;
+	window.onscroll = funtion(){
+		let progressHeight = (window.pageYOffset / totalHeight) * 100;
+		progress.style.height = progressHeight + "%";
+	}
+	</script>
+</body>
