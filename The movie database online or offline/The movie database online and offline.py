@@ -1,23 +1,38 @@
+# import of python modules
 import configparser
 import time
+import requests
 
+# import of the movie database module
+from tmdbv3api import TMDb
+from tmdbv3api import Movie
+from tmdbv3api import TV
+from tmdbv3api import Person
+
+# variables for the movie database module
+tmdb = TMDb()
+movie = Movie()
+tv = TV()
+person = Person()
+
+# reading the ini files for the offline genres of movies and series
 config = configparser.ConfigParser()
 config.read("moviegenre.ini")
 config.read("seriegenre.ini")
 
-# start by asking Netflix account or not
+# start by asking The movie database account or not
 def start():
-    netflix_or_not = input("Do you have a Netflix account? type 'y' for yes and 'n' for no   ")
-    if(netflix_or_not == "y"):
-        print("You selected yes, you will be directed to the netflix login.")
+    TMDB_or_not = input("Do you have an account for The movie database? type 'y' for yes and 'n' for no   ")
+    if(TMDB_or_not == "y"):
+        print("You selected yes, you will be directed to The movie database login.")
         print("")
-        time.sleep(2)
-        netflix_account()
+        time.sleep(3)
+        TMDB_account()
 
-    if(netflix_or_not == "n"):
-        print("You selected no, you will be directed to the offline list.")
+    if(TMDB_or_not == "n"):
+        print("You selected no, you will be directed to a offline movies or series list.")
         print("")
-        time.sleep(2)
+        time.sleep(3)
         movie_or_serie()
 
     else:
@@ -26,9 +41,9 @@ def start():
         start()
 
 
-# Movie or series?
+# Do you want to watch a Movie or serie or go back to the last question?
 def movie_or_serie():
-    movie_serie = input("Would you like to search for a movie or a serie? (example: movie)   ")
+    movie_serie = input("Would you like to search for a movie or a serie? If you want to go back type back. (example: movie)   ")
     if (movie_serie == "movie"):
         print("You selected movie! Here is a list with genres.")
         print("")
@@ -41,13 +56,19 @@ def movie_or_serie():
         time.sleep(3)
         serie_genre()
 
+    if(movie_serie == "back"):
+        print("You will go back to the last question.")
+        print("")
+        time.sleep(3)
+        start()
+
     else:
-        print("Error you didn't type movie or serie, please check if you used lower case letters and try again.")
+        print("Error you didn't type movie, serie or back, please check if you used lower case letters and try again.")
         time.sleep(2)
         movie_or_serie()
 
 
-# genre movies
+# Pick the genre of movies you would like to watch
 def movie_genre():
     print("Type 0 to go back to the last question.")
     print("Type 1 for Action movies")
@@ -217,7 +238,7 @@ def movie_genre():
         movie_genre()
 
 
-# genre series
+# Pick the genre of series you would like to watch.
 def serie_genre():
     print("Type 0 to go back to the last question.")
     print("Type 1 for Action series")
@@ -386,7 +407,7 @@ def serie_genre():
         time.sleep(2)
         serie_genre()
 
-# Another movie or series
+# Do you want to restart the program to see a different genre?
 def restart():
     start_again = input("Would you like to see a different genre? type y for yes and n for no.     ")
     if(start_again == "y"):
@@ -400,18 +421,15 @@ def restart():
         restart()
 
 
-# Netflix account login
-def netflix_account():
-    # NETFLIX LOGIN PAGE
-    netflix_back = input("Are you sure you have a Netflix account? type y to go to the login and n to go to the offline list.   ")
+# The movie database account login
+def TMDB_account():
+    TMDB_inlog = input("Are you sure you have an account for The movie database? type y to go to the login and n to go to the offline list.   ")
     print("")
-    if(netflix_back == "y"):
-        print("Please fill in your Netflix login.")
-        time.sleep(2)
-        usrname_netflix = input("Netflix Username:  ")
-        passwd_netflix = input("Netflix Password:  ")
+    if(TMDB_inlog == "y"):
+        tmdb.api_key = input("Fill in your personal login token (api key):   ")
+        options_tmdb()
     
-    if(netflix_back == "n"):
+    if(TMDB_inlog == "n"):
         print("You will be directed to our offline list of movies and series.")
         print("")
         time.sleep(2)
@@ -420,6 +438,97 @@ def netflix_account():
     else:
         print("Error you didn't type 'y' for yes or 'n' for no, Please check if you used lower case letters and try again. (example: y).")
         time.sleep(2)
-        netflix_account()
+        TMDB_account()
+
+
+# List of options you can choose to see online
+def options_tmdb():
+    print("")
+    print("Type 0 to go exit the program.")
+    print("Type 1 to get a list of the top 20 popular movies.")
+    print("Type 2 to search for a movie.")
+    print("Type 3 to see movie details by ID.")
+    print("Type 4 to search for a serie.")
+    print("Type 5 to search for information about a actor or actress.")
+    TMDB_options = input("What do you want to do on The movie database? Type a number from one of the options above.    ")
+    print("")
+    if(TMDB_options == "0"):
+        exit()
+
+    if(TMDB_options == "1"):
+        popular = movie.popular()
+        for p in popular:
+            print("ID:", p.id)
+            print("Title:", p.title)
+            print("__________________________________________________")
+            print("")
+        time.sleep(3)
+        options_tmdb()
+
+    if(TMDB_options == "2"):
+        search_input = input("Type here the name of the movie you want to search:   ")
+        search_movie = movie.search(search_input)
+        for res in search_movie:
+            print("Movie ID:", res.id)
+            print("Movie Title:", res.title)
+            print("Average rating movie:", res.vote_average)
+            print("__________________________________________________")
+            print("")
+        time.sleep(3)
+        options_tmdb()
+
+    if(TMDB_options == "3"):
+        input_id = input("What is the ID of the movie you want to know more about?   ")
+        m = movie.details(input_id)
+        print("Movie title:", m.title)
+        print("")
+        print("Movie description:")
+        print(m.overview)
+        print("__________________________________________________")
+        print("")
+        time.sleep(3)
+        options_tmdb()
+    
+    if(TMDB_options == "4"):
+        show_input = input("Type here the name of the serie you want to search:   ")
+        show = tv.search(show_input)
+        for result in show:
+            print("Serie title:", result.name)
+            print("")
+            print("Serie description:")
+            print(result.overview)
+            print("__________________________________________________")
+            print("")
+        time.sleep(3)
+        options_tmdb()
+
+    if(TMDB_options == "5"):
+        print("Who do you want to search? Please fill in the firstname and surname of the actor or actress.")
+        firstname = input("Firstname:  ")
+        surname = input("Surname:  ")
+        print("")
+        fullname = firstname + "+" + surname
+        url = "https://api.themoviedb.org/3/search/person?api_key="+tmdb.api_key+"&query="+fullname
+
+        actordata = requests.get(url) 
+        x = actordata.text
+
+        idfront = x.index("id") + 4 
+        idback = x.index("known") -2
+        id = x[idfront:idback]
+
+        person = Person()
+        p = person.details(id)
+        print("Name actor/actress:", p.name)
+        print("")
+        print("Biography actor/actress:")
+        print(p.biography)
+        print("")
+        time.sleep(3)
+        options_tmdb()
+
+    else:
+        print("You didn't type in one of the numbers in the list, Please try again.")
+        options_tmdb()
 
 start()
