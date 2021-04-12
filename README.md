@@ -35,5 +35,5 @@ Dit programma is op windows en linux te gebruiken.
 Om het programma uit te kunnen voeren heb je de module **tmdbv3api** nodig.
 
 Deze module kun je downloaden [op deze pagina.](https://pypi.org/project/tmdbv3api/)
-Dit programma is op windows en linux te gebruiken.
-<h3>!Vergeet niet om de ini files ook te downloaden voor de offline lijsten!</h3>
+Dit programma is op windows en linux te gebruiken. <h3>(door het gebruik van config bestanden moet je het programma uitvoeren in python zelf of via python in de terminal)</h3>.
+<h3>Vergeet niet om de ini files ook te downloaden voor de offline lijsten!</h3>
